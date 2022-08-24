@@ -1,0 +1,79 @@
+<div class="container-fluid">
+  <div class="row mt-5 px-5">
+    <div class="col">
+      <h3>
+        Poliklinik Penyakit Jantung
+        <a
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#tambah"
+          class="text-success"
+          ><i class="bi bi-clipboard-plus-fill"></i
+        ></a>
+      </h3>
+
+      <br />
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Nama Pasien</th>
+            <th scope="col">Dokter Yang Menangani</th>
+            <th scope="col">Rekam Medis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% rm.forEach((rm, index) => { %>
+            <tr>
+              <th scope="row"><%= index + 1 %></th>
+              <td><%= rm.pasien %></td>
+              <td><%= rm.dokter %></td>
+              <td>
+                <form method="post" action="/file/download">
+                  <input type="hidden" name="id" value="<%= rm.id %>">
+                  <button type="submit" class="btn btn-outline-primary">Download</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Tambah Modal -->
+<div class="modal fade" id="tambah" data-bs-backdrop="static" tabindex="-1" aria-labelledby="tambah" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tambah">Tambah RM</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form method="post" action="/file/upload" enctype="multipart/form-data">
+              <div class="mb-3">
+                  <label for="pasien" class="form-label">Nama Pasien</label>
+                  <input type="text" class="form-control" id="pasien" name="pasien" required>
+              </div>
+              <div class="mb-3">
+                  <label for="dokter" class="form-label">Nama Dokter</label>
+                  <input type="text" class="form-control" id="dokter" name="dokter" required>
+              </div>
+              <div class="mb-3">
+                  <label for="file" class="form-label">Rekam Medis <span class="text-danger mt-1">*pdf</span></label>
+                  <input type="file" class="form-control" id="file" name="file" required>
+              </div>
+              
+              <input type="hidden" name="poli" value="jantung">
+              <input type="hidden" name="role" value="poli">
+      </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                  <button type="submit" class="btn btn-success">Tambah RM</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
