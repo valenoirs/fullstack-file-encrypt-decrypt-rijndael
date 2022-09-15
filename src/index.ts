@@ -6,6 +6,8 @@ import helmet from "helmet";
 import path from "path";
 import methodOverride from "method-override";
 import expressLayouts from "express-ejs-layouts";
+import flash from "connect-flash";
+import session from "express-session";
 
 // Import Routes
 import { router as fileRoute } from "./routes/file";
@@ -40,10 +42,22 @@ app.use(
   })
 );
 
+app.use(
+  session({
+    secret: "v4l3n01r5",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 60000,
+    },
+  })
+);
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
+app.use(flash);
 
 // Templating Engine
 app.use(expressLayouts);
