@@ -57,7 +57,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
-app.use(flash);
+app.use(flash());
 
 // Templating Engine
 app.use(expressLayouts);

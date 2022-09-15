@@ -32,6 +32,7 @@ export const uploadFile = async (req: Request, res: Response) => {
     // Success response
     console.log(`[server]: OK! file-uploaded!`);
 
+    req.flash("error", "Data Rekam Medis Berhasil Ditambahkan!");
     return res.redirect(`/poli/${poli}`);
   } catch (error) {
     // Error handler if something went wrong while signing in user
