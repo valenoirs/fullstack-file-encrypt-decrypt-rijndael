@@ -59,6 +59,22 @@
     <main style="padding-bottom: 15rem">
       <div class="container" style="padding-top: 3.5rem"></div>
 
+      <!-- Error Container -->
+      <% if (error.length > 0) { %>
+      <div
+        class="alert alert-primary alert-dismissible fade show m-5"
+        data-aos="fade-down"
+        data-aos-duration="750"
+      >
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+        ></button>
+        <i class="bi bi-info-circle-fill"></i> <%= error %>
+      </div>
+      <% } %>
+
       <!-- Main Content -->
       <%- body %>
     </main>

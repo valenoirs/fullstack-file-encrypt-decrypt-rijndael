@@ -4,7 +4,11 @@ import { File } from "../models/file";
 
 export const router = express.Router();
 
-const title: string = "Rijndael";
+const title = "Rijndael";
+
+router.get("/", async (req: Request, res: Response) => {
+  res.redirect("/poli");
+});
 
 // POLI
 router.get("/poli", async (req: Request, res: Response) => {
@@ -18,6 +22,7 @@ router.get("/poli/anak", async (req: Request, res: Response) => {
     layout: "poli/layout/index",
     title,
     rm,
+    error: req.flash("error"),
   });
 });
 
@@ -28,6 +33,7 @@ router.get("/poli/dalam", async (req: Request, res: Response) => {
     layout: "poli/layout/index",
     title,
     rm,
+    error: req.flash("error"),
   });
 });
 
@@ -38,6 +44,7 @@ router.get("/poli/jantung", async (req: Request, res: Response) => {
     layout: "poli/layout/index",
     title,
     rm,
+    error: req.flash("error"),
   });
 });
 
@@ -53,6 +60,7 @@ router.get("/dokter/anak", async (req: Request, res: Response) => {
     layout: "dokter/layout/index",
     title,
     rm,
+    error: req.flash("error"),
   });
 });
 
@@ -63,6 +71,7 @@ router.get("/dokter/dalam", async (req: Request, res: Response) => {
     layout: "dokter/layout/index",
     title,
     rm,
+    error: req.flash("error"),
   });
 });
 
@@ -73,5 +82,6 @@ router.get("/dokter/jantung", async (req: Request, res: Response) => {
     layout: "dokter/layout/index",
     title,
     rm,
+    error: req.flash("error"),
   });
 });
