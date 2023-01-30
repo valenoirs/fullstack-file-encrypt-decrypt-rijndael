@@ -44,11 +44,11 @@ app.use(
 
 app.use(
   session({
-    secret: "v4l3n01r5",
+    secret: config.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
-      maxAge: 60000,
+      maxAge: config.SESSION_LIFETIME,
     },
   })
 );
